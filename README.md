@@ -99,6 +99,6 @@ struct LicensesScreen: View {
 }
 ```
 
-(gif here)
+<img src="https://user-images.githubusercontent.com/22269397/222938691-a8dbec3a-b129-4c6a-b5ed-fba60be91a7c.gif" width="35%">
 
 Note that this plugin provides the licenses of all the libraries your **swift package** depends on, not just the target this plugin applied depends on.
