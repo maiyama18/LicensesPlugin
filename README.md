@@ -50,7 +50,7 @@ let package = Package(
 )
 ```
 
-In the target the plugin applied, you can use `LicensesPlugin.licenses` to make UI showing the licenses. The type of the elements of `LicensePlugin.licenses` is below.
+In the target the plugin applied, the information of all the licenses of the libraries your package depends on is provided as`LicensesPlugin.licenses`, and you can use it to make UI showing the licenses. The type of the elements of `LicensePlugin.licenses` is below.
 
 ```swift
 public enum LicensesPlugin {
