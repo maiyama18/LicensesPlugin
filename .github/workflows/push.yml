@@ -1,0 +1,19 @@
+name: push
+on: push
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: macos-12
+    name: Test
+    steps:
+      - uses: actions/checkout@v3
+      - name: SwiftPM Cache
+        uses: actions/cache@v3
+        with:
+          path: ./PluginTests/ExamplePackage/SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('./PluginTests/ExamplePackage/Package.resolved') }}
+      - name: Test
+        run: |
+          cd PluginTests/ExamplePackage
+          xcodebuild -scheme ExamplePackage -sdk macosx -destination "platform=macOS,arch=$(uname -m)" -clonedSourcePackagesDirPath SourcePackages -skipPackagePluginValidation test
