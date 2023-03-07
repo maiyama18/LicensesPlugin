@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "BF3E1D60-746D-4FDD-9035-299661E5A927",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ExamplePackageTests",
+        "name" : "ExamplePackageTests"
+      }
+    }
+  ],
+  "version" : 1
+}
