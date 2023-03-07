@@ -59,7 +59,7 @@ import PackagePlugin
     private let generatedFileName = "Licenses+Generated.swift"
     
     private func tmpOutputFilePath(workDirectory: Path) throws -> Path {
-        let tmpDirectory = workDirectory.appending("Tmp")
+        let tmpDirectory = Path(NSTemporaryDirectory())
         try FileManager.default.createDirectoryIfNotExists(atPath: tmpDirectory.string)
         return tmpDirectory.appending(generatedFileName)
     }
