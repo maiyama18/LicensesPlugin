@@ -11,8 +11,9 @@ jobs:
       - name: SwiftPM Cache
         uses: actions/cache@v3
         with:
-          path: SourcePackages
+          path: ./PluginTests/ExamplePackage/SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('./PluginTests/ExamplePackage/Package.resolved') }}
       - name: Test
         run: |
-          xcodebuild -workspace ./PluginTests/ExamplePackage/.swiftpm/xcode/package.xcworkspace -scheme ExamplePackage -sdk macosx -destination "platform=macOS,arch=$(uname -m)" -clonedSourcePackagesDirPath SourcePackages -skipPackagePluginValidation test
+          cd PluginTests/ExamplePackage
+          xcodebuild -scheme ExamplePackage -sdk macosx -destination "platform=macOS,arch=$(uname -m)" -clonedSourcePackagesDirPath SourcePackages -skipPackagePluginValidation test
