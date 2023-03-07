@@ -41,7 +41,7 @@ import PackagePlugin
         }
         """
         
-        let tmpOutputFilePathString = try tmpOutputFilePath(workDirectory: context.pluginWorkDirectory).string
+        let tmpOutputFilePathString = try tmpOutputFilePath().string
         try generatedFileContent.write(to: URL(fileURLWithPath: tmpOutputFilePathString), atomically: true, encoding: .utf8)
         
         let outputFilePath = try outputFilePath(workDirectory: context.pluginWorkDirectory)
@@ -58,8 +58,8 @@ import PackagePlugin
     
     private let generatedFileName = "Licenses+Generated.swift"
     
-    private func tmpOutputFilePath(workDirectory: Path) throws -> Path {
-        let tmpDirectory = workDirectory.appending("Tmp")
+    private func tmpOutputFilePath() throws -> Path {
+        let tmpDirectory = Path(NSTemporaryDirectory())
         try FileManager.default.createDirectoryIfNotExists(atPath: tmpDirectory.string)
         return tmpDirectory.appending(generatedFileName)
     }
