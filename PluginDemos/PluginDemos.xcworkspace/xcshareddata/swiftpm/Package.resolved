@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "d71bfd8ffbf944ef08eacbca5fb96d6f69bf7696",
+        "version" : "7.1.0"
+      }
+    },
+    {
+      "identity" : "drops",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/omaralbeik/Drops.git",
+      "state" : {
+        "revision" : "f4eabe3e4e5da69e5205a69a5ddc0effd4a90519",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke",
+      "state" : {
+        "revision" : "6241e100294a2aa70d1811641585ab7da780bd0f",
+        "version" : "12.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}
