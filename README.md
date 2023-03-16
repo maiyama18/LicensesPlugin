@@ -1,9 +1,5 @@
 # LicensesPlugin
 
-⚠️ This plugin is currently in an experimental phase and may contain bugs. It would be greatly appreciated if you could report wrong behaviors by creating issues.
-
----
-
 LicensesPlugin is a swift package plugin that provides license information of the libraries your swift package depends on. Currently, the licenses of only swift packages are collected.
 
 This plugin has the following features.
