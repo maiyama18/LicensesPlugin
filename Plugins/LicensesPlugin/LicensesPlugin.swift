@@ -29,7 +29,7 @@ import PackagePlugin
         
         let generatedFileContent = """
         public enum LicensesPlugin {
-            public struct License: Identifiable, Equatable, Hashable {
+            public struct License: Identifiable, Equatable, Hashable, Sendable {
                 public let id: String
                 public let name: String
                 public let licenseText: String?
