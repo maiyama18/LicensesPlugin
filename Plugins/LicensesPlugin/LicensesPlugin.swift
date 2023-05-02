@@ -41,28 +41,26 @@ import PackagePlugin
         }
         """
         
-        let tmpOutputFilePathString = try tmpOutputFilePath(packageID: context.package.id).string
+        let tmpOutputFilePathString = try tmpOutputFilePath().string
         try generatedFileContent.write(to: URL(fileURLWithPath: tmpOutputFilePathString), atomically: true, encoding: .utf8)
         
         let outputFilePath = try outputFilePath(workDirectory: context.pluginWorkDirectory)
         
         return [
-            .buildCommand(
+            .prebuildCommand(
                 displayName: "LicensesPlugin",
-                executable: try context.tool(named: "CopyLicensesFile").path,
+                executable: try context.tool(named: "cp").path,
                 arguments: [tmpOutputFilePathString, outputFilePath.string],
-                inputFiles: [Path(tmpOutputFilePathString)],
-                outputFiles: [Path(outputFilePath.string)]
+                outputFilesDirectory: outputFilePath.removingLastComponent()
             )
         ]
     }
     
+    private let generatedFileName = "Licenses+Generated.swift"
     
-    private func tmpOutputFilePath(packageID: String) throws -> Path {
+    private func tmpOutputFilePath() throws -> Path {
         let tmpDirectory = Path(NSTemporaryDirectory())
         try FileManager.default.createDirectoryIfNotExists(atPath: tmpDirectory.string)
-        
-        let generatedFileName = "\(packageID)_Licenses+Generated.swift"
         return tmpDirectory.appending(generatedFileName)
     }
     
