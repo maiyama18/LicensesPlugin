@@ -1,4 +1,6 @@
-# LicensesPlugin
+![DropcastBanner 002](https://user-images.githubusercontent.com/22269397/235568551-4a4fe5a1-39cf-460c-91a5-c7f10355ef59.png)
+
+---
 
 LicensesPlugin is a swift package plugin that provides license information of the libraries your swift package depends on. Currently, the licenses of only swift packages are collected.
 
