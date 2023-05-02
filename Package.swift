@@ -11,9 +11,13 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
+        .executableTarget(
+            name: "CopyLicensesFile"
+        ),
         .plugin(
             name: "LicensesPlugin",
-            capability: .buildTool()
+            capability: .buildTool(),
+            dependencies: ["CopyLicensesFile"]
         ),
     ]
 )
