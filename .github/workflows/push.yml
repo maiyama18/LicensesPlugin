@@ -13,7 +13,15 @@ jobs:
         with:
           path: ./PluginTests/ExamplePackage/SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('./PluginTests/ExamplePackage/Package.resolved') }}
-      - name: Test
+      - name: xcodebuild test
         run: |
-          cd PluginTests/ExamplePackage
-          xcodebuild -scheme ExamplePackage -sdk macosx -destination "platform=macOS,arch=$(uname -m)" -clonedSourcePackagesDirPath SourcePackages -skipPackagePluginValidation test
+          (
+            cd PluginTests/ExamplePackage
+            xcodebuild -scheme ExamplePackage -sdk macosx -destination "platform=macOS,arch=$(uname -m)" -clonedSourcePackagesDirPath SourcePackages -skipPackagePluginValidation test
+          )
+      - name: swift test
+        run: |
+          (
+            cd PluginTests/ExamplePackage
+            swift test
+          )
