@@ -49,7 +49,7 @@ import PackagePlugin
         return [
             .prebuildCommand(
                 displayName: "LicensesPlugin",
-                executable: try context.tool(named: "cp").path,
+                executable: Path("/bin/cp"),
                 arguments: [tmpOutputFilePathString, outputFilePath.string],
                 outputFilesDirectory: outputFilePath.removingLastComponent()
             )
