@@ -8,7 +8,7 @@ extension Package {
             allDependencies.append(dependency.package)
             allDependencies.append(contentsOf: dependency.package.getDependenciesRecursively())
         }
-        return allDependencies
+        return allDependencies.uniqued()
     }
     
     func readLicenseText() -> String? {
