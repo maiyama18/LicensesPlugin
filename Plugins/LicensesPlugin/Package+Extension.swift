@@ -28,7 +28,7 @@ extension Package {
 
 extension [Package] {
     func uniqued() -> [Package] {
-        var new = self
+        var new: [Package] = []
         for element in self {
             if !new.contains(where: { $0.id == element.id }) {
                 new.append(element)
