@@ -1,22 +1,12 @@
 import Foundation
 import PackagePlugin
 
-extension Package: Hashable {
-    public static func == (lhs: PackagePlugin.Package, rhs: PackagePlugin.Package) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
 extension Package {
-    func getDependenciesRecursively() -> Set<Package> {
-        var allDependencies: Set<Package> = .init()
+    func getDependenciesRecursively() -> [Package] {
+        var allDependencies: [Package] = []
         for dependency in dependencies {
-            allDependencies.insert(dependency.package)
-            allDependencies.formUnion(dependency.package.getDependenciesRecursively())
+            allDependencies.append(dependency.package)
+            allDependencies.append(contentsOf: dependency.package.getDependenciesRecursively())
         }
         return allDependencies
     }
@@ -33,5 +23,17 @@ extension Package {
             }
         }
         return nil
+    }
+}
+
+extension [Package] {
+    func uniqued() -> [Package] {
+        var new = self
+        for element in self {
+            if !new.contains(where: { $0.id == element.id }) {
+                new.append(element)
+            }
+        }
+        return new
     }
 }
