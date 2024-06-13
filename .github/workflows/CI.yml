@@ -1,5 +1,12 @@
-name: push
-on: push
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
 
 jobs:
   test:
