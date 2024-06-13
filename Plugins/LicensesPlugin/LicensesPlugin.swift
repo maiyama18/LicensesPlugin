@@ -4,7 +4,7 @@ import PackagePlugin
 @main struct Plugin: BuildToolPlugin {
     func createBuildCommands(context: PackagePlugin.PluginContext, target: PackagePlugin.Target) async throws -> [PackagePlugin.Command] {
         let dependencies = context.package.getDependenciesRecursively()
-        let sortedDependencies = Array(dependencies).sorted(by: { $0.displayName.lowercased() < $1.displayName.lowercased() })
+        let sortedDependencies = dependencies.sorted(by: { $0.displayName.lowercased() < $1.displayName.lowercased() })
         let generatedLicensesText = sortedDependencies.map {
             if let licenseText = $0.readLicenseText() {
                 return """
