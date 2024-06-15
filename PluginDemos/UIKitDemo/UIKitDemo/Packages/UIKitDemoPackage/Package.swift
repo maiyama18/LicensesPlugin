@@ -13,7 +13,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/sindresorhus/Defaults", exact: "7.1.0"),
         .package(url: "https://github.com/omaralbeik/Drops", exact: "1.6.1"),
-        .package(url: "https://github.com/kean/Nuke", exact: "12.0.0"),
+        .package(url: "https://github.com/kean/Nuke", exact: "12.7.2"),
         
         // LicensesPlugin
         .package(path: "../../../../.."),
