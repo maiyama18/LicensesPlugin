@@ -2,5 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "ignorePaths": [
+    "PluginDemos/SwiftUIDemo/SwiftUIDemo/Packages/SwiftUIDemoPackage/Package.swift",
+    "PluginDemos/UIKitDemo/UIKitDemo/Packages/UIKitDemoPackage/Package.swift",
+    "PluginTests/ExamplePackage/Package.swift"
   ]
 }
