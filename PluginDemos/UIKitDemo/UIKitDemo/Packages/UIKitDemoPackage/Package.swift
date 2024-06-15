@@ -11,7 +11,7 @@ let package = Package(
             targets: ["UIKitDemoPackage"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/sindresorhus/Defaults", exact: "7.1.0"),
+        .package(url: "https://github.com/sindresorhus/Defaults", exact: "8.2.0"),
         .package(url: "https://github.com/omaralbeik/Drops", exact: "1.6.1"),
         .package(url: "https://github.com/kean/Nuke", exact: "12.0.0"),
         
