@@ -9,7 +9,7 @@ final class ExamplePackageTests: XCTestCase {
             licenseNames,
             [
                 "abseil",
-                "BoringSSL-GRPC",
+                "AppCheck",
                 "combine-schedulers",
                 "Firebase",
                 "GoogleAppMeasurement",
@@ -17,6 +17,7 @@ final class ExamplePackageTests: XCTestCase {
                 "GoogleUtilities",
                 "gRPC",
                 "GTMSessionFetcher",
+                "InteropForGoogle",
                 "leveldb",
                 "LicensesPlugin",
                 "nanopb",
