@@ -12,7 +12,7 @@ let package = Package(
     dependencies: [
         // libraries
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.51.0"),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "10.6.0"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "10.27.0"),
         
         // plugins
         .package(name: "LicensesPlugin", path: "../.."),
