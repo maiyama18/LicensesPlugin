@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "revision" : "d71bfd8ffbf944ef08eacbca5fb96d6f69bf7696",
-        "version" : "7.1.0"
+        "revision" : "38925e3cfacf3fb89a81a35b1cd44fd5a5b7e0fa",
+        "version" : "8.2.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/omaralbeik/Drops.git",
       "state" : {
-        "revision" : "f4eabe3e4e5da69e5205a69a5ddc0effd4a90519",
-        "version" : "1.6.1"
+        "revision" : "a183ee6f79f21c940092a19c2cba756555422371",
+        "version" : "1.7.0"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke",
       "state" : {
-        "revision" : "6241e100294a2aa70d1811641585ab7da780bd0f",
-        "version" : "12.0.0"
+        "revision" : "084076db4f9b9ee4db51177ef5a4879689c1aa09",
+        "version" : "12.7.2"
       }
     }
   ],
