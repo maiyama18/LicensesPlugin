@@ -13,13 +13,13 @@ extension Package {
     
     func readLicenseText() -> String? {
         guard let fileURLs = try? FileManager.default.contentsOfDirectory(
-            at: URL(fileURLWithPath: directory.string),
+            at: directoryURL,
             includingPropertiesForKeys: nil
         ) else { return nil }
         
         for fileURL in fileURLs {
             if fileURL.lastPathComponent.lowercased().hasPrefix("license") || fileURL.lastPathComponent.lowercased().hasPrefix("licence") {
-                return try? String(contentsOf: fileURL)
+                return try? String(contentsOf: fileURL, encoding: .utf8)
             }
         }
         return nil
