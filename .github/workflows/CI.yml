@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: macos-15
+    runs-on: macos-26
     name: Test
     steps:
       - uses: actions/checkout@v6
