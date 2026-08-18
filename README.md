@@ -53,9 +53,10 @@ In the target the plugin applied, the information of all the licenses of the lib
 
 ```swift
 public enum LicensesPlugin {
-    public struct License: Identifiable, Equatable, Hashable {
+    public struct License: Identifiable, Equatable, Hashable, Sendable {
         public let id: String
         public let name: String
+        public let url: URL?
         public let licenseText: String?
     }
 }

@@ -22,6 +22,7 @@ struct LicenseDetailScreen_Previews: PreviewProvider {
                 license: .init(
                     id: "LicensesPlugin",
                     name: "LicensesPlugin",
+                    url: URL(string: "https://github.com/maiyama18/LicensesPlugin"),
                     licenseText: """
                 MIT License
                 

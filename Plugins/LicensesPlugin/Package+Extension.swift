@@ -11,6 +11,11 @@ extension Package {
         return allDependencies.uniqued()
     }
     
+    var repositoryURL: String? {
+        guard case .repository(let url, _, _) = origin else { return nil }
+        return url
+    }
+    
     func readLicenseText() -> String? {
         guard let fileURLs = try? FileManager.default.contentsOfDirectory(
             at: directoryURL,

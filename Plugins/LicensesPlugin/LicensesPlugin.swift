@@ -6,11 +6,13 @@ import PackagePlugin
         let dependencies = context.package.getDependenciesRecursively()
         let sortedDependencies = dependencies.sorted(by: { $0.displayName.lowercased() < $1.displayName.lowercased() })
         let generatedLicensesText = sortedDependencies.map {
+            let urlLiteral = $0.repositoryURL.map { url in "URL(string: \"\(url)\")" } ?? "nil"
             if let licenseText = $0.readLicenseText() {
                 return """
             License(
                 id: \"\($0.id)\",
                 name: \"\($0.displayName)\",
+                url: \(urlLiteral),
                 licenseText: \"\"\"
             \(licenseText)
             \"\"\"
@@ -21,6 +23,7 @@ import PackagePlugin
             License(
                 id: \"\($0.id)\",
                 name: \"\($0.displayName)\",
+                url: \(urlLiteral),
                 licenseText: nil
             )
             """
@@ -28,10 +31,13 @@ import PackagePlugin
         }.joined(separator: ",\n")
         
         let generatedFileContent = """
+        import Foundation
+        
         public enum LicensesPlugin {
             public struct License: Identifiable, Equatable, Hashable, Sendable {
                 public let id: String
                 public let name: String
+                public let url: URL?
                 public let licenseText: String?
             }
         
