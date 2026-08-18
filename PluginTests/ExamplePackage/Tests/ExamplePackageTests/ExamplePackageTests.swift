@@ -48,4 +48,25 @@ final class ExamplePackageTests: XCTestCase {
             XCTAssertNotNil(license.licenseText, "failed to parse license of \(license.name)")
         }
     }
+    
+    func testLicenseURLs() throws {
+        func url(of name: String) throws -> URL? {
+            try XCTUnwrap(
+                LicensesPlugin.licenses.first(where: { $0.name == name }),
+                "\(name) is missing from the generated licenses"
+            ).url
+        }
+        
+        // urls are emitted as declared in the manifest, so a `.git` suffix is preserved as-is
+        XCTAssertEqual(try url(of: "Firebase"), URL(string: "https://github.com/firebase/firebase-ios-sdk"))
+        XCTAssertEqual(try url(of: "leveldb"), URL(string: "https://github.com/firebase/leveldb.git"))
+        
+        // a dependency referenced by path has no repository url
+        XCTAssertNil(try url(of: "LicensesPlugin"))
+        
+        // assert that url is resolved for all the remote libraries
+        for license in LicensesPlugin.licenses where license.name != "LicensesPlugin" {
+            XCTAssertNotNil(license.url, "failed to resolve url of \(license.name)")
+        }
+    }
 }
