@@ -1,3 +1,4 @@
+import Foundation
 import XCTest
 
 @testable import ExamplePackage
@@ -35,6 +36,7 @@ final class ExamplePackageTests: XCTestCase {
                 "SwiftGenPlugin",
                 "SwiftProtobuf",
                 "swiftui-navigation",
+                "TrickyLicense",
                 "xctest-dynamic-overlay"
             ]
         )
@@ -47,5 +49,34 @@ final class ExamplePackageTests: XCTestCase {
         for license in LicensesPlugin.licenses {
             XCTAssertNotNil(license.licenseText, "failed to parse license of \(license.name)")
         }
+    }
+    
+    func testTrickyLicenseTextIsReproducedVerbatim() throws {
+        let license = try XCTUnwrap(
+            LicensesPlugin.licenses.first(where: { $0.name == "TrickyLicense" }),
+            "the TrickyLicense fixture is missing from the generated licenses"
+        )
+        let fixtureText = try String(contentsOf: Self.trickyLicenseFixtureURL, encoding: .utf8)
+        
+        // assert the fixture still contains every construct a naive string literal cannot hold
+        for construct in ["\\", "\\n", "\\q", "\\(", "\\#n", "\"\"\"", "\"\"\"#"] {
+            XCTAssertTrue(
+                fixtureText.contains(construct),
+                "the TrickyLicense fixture no longer contains \(construct.debugDescription)"
+            )
+        }
+        
+        XCTAssertEqual(license.licenseText, fixtureText)
+    }
+    
+    // PluginTests/TrickyLicense/LICENSE, relative to this file
+    private static var trickyLicenseFixtureURL: URL {
+        URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("TrickyLicense")
+            .appendingPathComponent("LICENSE")
     }
 }

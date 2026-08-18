@@ -1,0 +1,41 @@
+Copyright (c) 2024 TrickyLicense
+
+This is a test fixture for LicensesPlugin, not a real license. It deliberately
+contains the characters that a naive Swift string literal cannot hold, so that
+`ExamplePackageTests` fails if the generated code stops escaping them.
+
+Keep this file byte-for-byte stable: the test asserts that the generated
+`licenseText` reproduces it exactly.
+
+1. Backslashes must survive verbatim, including sequences that look like Swift
+   escapes and string interpolations:
+
+       C:\Users\example\AppData\Local
+       \n \t \r \0 \\ \" \q
+       \(interpolation)
+       \u{1F600}
+
+   A raw literal delimited by a single `#` still honors `\#`, so these must
+   force the delimiter to grow:
+
+       \#n
+       \#(interpolation)
+
+2. A triple quote must not terminate the generated literal, whether it sits on
+   a line of its own:
+
+"""
+
+   or in the middle of a line: """ like this.
+
+3. A triple quote followed by hashes must not terminate it either, which is
+   what makes a single `#` insufficient:
+
+"""#
+
+   and mid-line: """# like this.
+
+4. Ordinary double quotes: "quoted", ""doubled"", and a trailing one "
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. THIS FIXTURE GRANTS NOTHING AND IS NOT DISTRIBUTED.

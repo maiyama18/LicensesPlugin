@@ -14,6 +14,9 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.11.1"),
         .package(url: "https://github.com/firebase/firebase-ios-sdk", exact: "10.27.0"),
         
+        // fixtures
+        .package(name: "TrickyLicense", path: "../TrickyLicense"),
+        
         // plugins
         .package(name: "LicensesPlugin", path: "../.."),
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", exact: "6.6.2"),
@@ -21,7 +24,7 @@ let package = Package(
     targets: [
         .target(
             name: "ExamplePackage",
-            dependencies: [],
+            dependencies: [.product(name: "TrickyLicense", package: "TrickyLicense")],
             plugins: [.plugin(name: "LicensesPlugin", package: "LicensesPlugin")]
         ),
         .testTarget(

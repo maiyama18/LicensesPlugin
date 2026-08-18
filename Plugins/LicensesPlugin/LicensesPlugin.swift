@@ -7,13 +7,14 @@ import PackagePlugin
         let sortedDependencies = dependencies.sorted(by: { $0.displayName.lowercased() < $1.displayName.lowercased() })
         let generatedLicensesText = sortedDependencies.map {
             if let licenseText = $0.readLicenseText() {
+                let delimiter = String(repeating: "#", count: rawDelimiterHashCount(for: licenseText))
                 return """
             License(
                 id: \"\($0.id)\",
                 name: \"\($0.displayName)\",
-                licenseText: \"\"\"
+                licenseText: \(delimiter)\"\"\"
             \(licenseText)
-            \"\"\"
+            \"\"\"\(delimiter)
             )
             """
             } else {
@@ -54,6 +55,29 @@ import PackagePlugin
                 outputFilesDirectory: outputFilePath.removingLastComponent()
             )
         ]
+    }
+    
+    // a raw literal delimited by n `#` still ends at `"""` + n `#`, and still escapes `\` + n `#`
+    private func rawDelimiterHashCount(for text: String) -> Int {
+        let characters = Array(text)
+        var count = 1
+        for index in characters.indices {
+            let startsEscape = characters[index] == "\\"
+            let startsClosingDelimiter = index + 2 < characters.count
+                && characters[index] == "\""
+                && characters[index + 1] == "\""
+                && characters[index + 2] == "\""
+            guard startsEscape || startsClosingDelimiter else { continue }
+            
+            var cursor = index + (startsEscape ? 1 : 3)
+            var hashes = 0
+            while cursor < characters.count, characters[cursor] == "#" {
+                hashes += 1
+                cursor += 1
+            }
+            count = max(count, hashes + 1)
+        }
+        return count
     }
     
     private let generatedFileName = "Licenses+Generated.swift"
